@@ -1,0 +1,17 @@
+<div class="ui basic segment">
+  <table *ngIf="todos.length"
+        class="ui celled striped teal table">
+    <thead>
+      <tr>
+        <th>Done</th>
+        <th>Title</th>
+        <th>Due date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mz-todo-item *ngFor="let todo of todos" [todo]="todo" (todoClicked)="toggleCompleted($event)"></tr>
+    </tbody>
+  </table>
+
+  <div class="ui centered inline loader" [class.active]="loading"></div>
+</div>

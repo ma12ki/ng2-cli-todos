@@ -1,0 +1,35 @@
+<div class="ui basic segment">
+  <form class="ui form" (ngSubmit)="addTodo(f.value, f.valid)" #f="ngForm">
+    <div class="four fields">
+      <div class="field">
+        <label>Title</label>
+        <input placeholder="Title" type="text" />
+      </div>
+      <div class="field">
+        <label>Priority</label>
+        <select class="ui dropdown">
+          <option *ngFor="let p of priorities"
+            [value]="p.key"
+            [textContent]="p.value"
+            [selected]="p.key == 2">
+          </option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Due date</label>
+        <input type="date" />
+      </div>
+
+      <div class="field">
+        <label>&nbsp;</label>
+        <button class="ui animated submit teal button"
+                (click)="addTodo()">
+          <div class="visible content">Add</div>
+          <div class="hidden content">
+            <i class="plus icon"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

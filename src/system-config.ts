@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // SystemJS configuration file, see links for more information
 // https://github.com/systemjs/systemjs
@@ -9,10 +9,14 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'angular2-uuid': 'vendor/angular2-uuid/index.js',
+  'moment': 'vendor/moment/moment.js'
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'angular2-uuid': { format: 'cjs' },
+  'moment': { format: 'cjs' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +40,10 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/components/todo-list',
+  'app/components/todo',
+  'app/components/todo-item',
+  'app/components/add-todo',
   /** @cli-barrel */
 ];
 

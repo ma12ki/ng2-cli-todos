@@ -1,0 +1,7 @@
+<td class="center aligned" (click)="emitTodoClicked($event)">
+  <div>
+    <input type="checkbox" [checked]="todo.completed" />
+  </div>
+</td>
+<td [textContent]="todo.title"></td>
+<td [textContent]="todo.dueDate | date:'dd/MM/yyyy HH:mm'"></td>
