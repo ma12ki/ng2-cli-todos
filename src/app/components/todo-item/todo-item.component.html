@@ -1,5 +1,6 @@
 <td [textContent]="todo.title"></td>
-<td [textContent]="priorities[todo.priority]"></td>
+<td [textContent]="priorities[todo.priority]"
+  [ngClass]="{positive:todo.priority == 3, warning:todo.priority == 2, negative:todo.priority == 1}"></td>
 <td [textContent]="todo.dueDate | fromNow" [title]="todo.dueDate | date:'dd/MM/yyyy HH:mm'"></td>
 <td class="center aligned" (click)="toggleCompleted()">
   <div>
