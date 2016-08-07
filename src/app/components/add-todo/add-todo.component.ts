@@ -9,13 +9,11 @@ import { Todo, TodoPriority } from '../../models/index';
   styleUrls: ['add-todo.component.css']
 })
 export class AddTodoComponent implements OnInit {
+  newTodo: Todo;
   priorities: Object[] = new Array<Object>();
 
   constructor(@Inject(TodosService) private todosService: ITodos) {
-    // console.log(TodoPriority);
-    // console.log(TodoPriority.High);
-    // console.log(TodoPriority[TodoPriority.Low]);
-    // console.log(this.priorities);
+    this.resetTodo();
 
     Object.keys(TodoPriority)
       .filter((k: any) => !isNaN(k))
@@ -25,19 +23,29 @@ export class AddTodoComponent implements OnInit {
           value: TodoPriority[k]
         });
       });
+  }
 
-    console.log(this.priorities);
+  resetTodo() {
+    this.newTodo = new Todo({
+      title: '',
+      dueDate: null,
+      priority: TodoPriority.Medium
+    });
   }
 
   ngOnInit() { }
 
-  addTodo() {
+  addTodo(formValues, valid) {
+    console.log(formValues, valid);
+    return;
     // console.log('aassasa');
+    /*
     let todo: Todo = new Todo({
       title: 'lmao',
       dueDate: new Date()
     });
     this.todosService.addTodo(todo);
+    */
   }
 
 }

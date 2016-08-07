@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Todo } from '../../models/index';
+import { Todo, TodoPriority } from '../../models/index';
 
 @Component({
   moduleId: module.id,
@@ -8,6 +8,8 @@ import { Todo } from '../../models/index';
   styleUrls: ['todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
+  priorities: any = TodoPriority;
+
   @Input()
   todo: Todo;
 
