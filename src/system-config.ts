@@ -10,13 +10,15 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'angular2-uuid': 'vendor/angular2-uuid/index.js',
-  'moment': 'vendor/moment/moment.js'
+  'moment': 'vendor/moment/moment.js',
+  'ng2-semantic-ui': 'vendor/ng2-semantic-ui'
 };
 
 /** User packages configuration. */
 const packages: any = {
   'angular2-uuid': { format: 'cjs' },
-  'moment': { format: 'cjs' }
+  'moment': { format: 'cjs' },
+  'ng2-semantic-ui': { format: 'cjs' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +46,7 @@ const barrels: string[] = [
   'app/components/todo',
   'app/components/todo-item',
   'app/components/add-todo',
+  'app/components/todo-sort',
   /** @cli-barrel */
 ];
 

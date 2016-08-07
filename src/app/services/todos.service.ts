@@ -23,6 +23,10 @@ export class TodosService implements ITodos {
 
   create: Subject<Todo> = new Subject<Todo>();
 
+  update: Subject<Todo> = new Subject<Todo>();
+
+  delete: Subject<Todo> = new Subject<Todo>();
+
   constructor(@Inject(LocalStorageService) private storage: ILocalStorage) {
     console.log('*** TodosService constructor ***');
     /*
@@ -65,7 +69,7 @@ export class TodosService implements ITodos {
         return (todos: Todo[]) => {
           console.log('# create $ invoked ITodosOperation', todos.length);
           todos = todos.concat(todo);
-          // this.storage.setItem(TODOS_KEY, JSON.stringify(todos));
+          this.storage.setItem(TODOS_KEY, todos);
           return todos;
         };
       })
@@ -73,33 +77,49 @@ export class TodosService implements ITodos {
       .subscribe(this.updates);
 
     this.newTodos
-      .do((x) => console.log('# newTodos'))
       .subscribe(this.create);
 
+    this.update
+      .map( (todo: Todo): ITodosOperation => {
+        return (todos: Todo[]) => {
+          todos = todos
+            .map( (t: Todo) => {
+              if (t.id === todo.id) {
+                t = todo;
+              }
+              return t;
+            });
 
-    this.newTodos
-      .subscribe( (todo: Todo) => {
-        console.log('=> newTodos:', todo);
-      });
+          this.storage.setItem(TODOS_KEY, todos);
+          return todos;
+        };
+      })
+      .subscribe(this.updates);
 
-    // listen to the stream of most current messages
-    /*
-    this.todos
-      .subscribe( (todos: Todo[]) => {
-        console.log('=> todos:', todos.length);
-      });
+    this.delete
+      .map( (todo: Todo): ITodosOperation => {
+        return (todos: Todo[]) => {
+          todos = todos
+            .filter( (t: Todo) => {
+              return t.id !== todo.id;
+            });
 
-    let todo: Todo = new Todo({
-      title: 'lmao',
-      dueDate: new Date()
-    });
-    this.addTodo(todo);
-    */
+          this.storage.setItem(TODOS_KEY, todos);
+          return todos;
+        };
+      })
+      .subscribe(this.updates);
   }
 
   addTodo(todo: Todo): void {
-    // console.log(todo);
     this.newTodos.next(todo);
-    // console.log(this.todos);
+  }
+
+  editTodo(todo: Todo): void {
+    this.update.next(todo);
+  }
+
+  deleteTodo(todo: Todo): void {
+    this.delete.next(todo);
   }
 }

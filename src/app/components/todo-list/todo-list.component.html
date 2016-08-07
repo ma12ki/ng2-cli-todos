@@ -1,16 +1,13 @@
 <div class="ui basic segment">
   <table *ngIf="todos.length"
-        class="ui celled striped teal table">
+        class="ui sortable celled striped teal selectable table">
     <thead>
-      <tr>
-        <th>Done</th>
-        <th>Title</th>
-        <th>Priority</th>
-        <th>Due date</th>
-      </tr>
+      <tr mz-todo-sort [sortObject]="sortObject" (onSortChanged)="changeSort($event)"></tr>
     </thead>
     <tbody>
-      <tr mz-todo-item *ngFor="let todo of todos" [todo]="todo" (todoClicked)="toggleCompleted($event)"></tr>
+      <tr mz-todo-item
+        *ngFor="let todo of todos | orderBy:sortObject.predicate:sortObject.reverse"
+        [todo]="todo"></tr>
     </tbody>
   </table>
 

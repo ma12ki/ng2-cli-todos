@@ -1,0 +1,13 @@
+<th (click)="handleSortChange('title')"
+  [ngClass]="{sorted: sortObject.predicate === 'title', ascending: sortObject.reverse === false, descending: sortObject.reverse === true}">
+  Title</th>
+<th (click)="handleSortChange('priority')"
+  [ngClass]="{sorted: sortObject.predicate === 'priority', ascending: sortObject.reverse === false, descending: sortObject.reverse === true}">
+  Priority</th>
+<th (click)="handleSortChange('dueDate')"
+  [ngClass]="{sorted: sortObject.predicate === 'dueDate', ascending: sortObject.reverse === false, descending: sortObject.reverse === true}">
+  Due date</th>
+<th (click)="handleSortChange('completed')"
+  [ngClass]="{sorted: sortObject.predicate === 'completed', ascending: sortObject.reverse === false, descending: sortObject.reverse === true}">
+  Done</th>
+<th></th>

@@ -1,5 +1,5 @@
 <div class="ui basic segment">
-  <form class="ui form" (ngSubmit)="addTodo(f.value, f.valid)" #f="ngForm">
+  <form class="ui form" (ngSubmit)="addTodo(f.value, f)" #f="ngForm">
     <div class="four fields">
       <div class="required field">
         <label>Title</label>
@@ -17,14 +17,14 @@
       </div>
       <div class="required required field">
         <label>Due date</label>
-        <input type="date" name="dueDate" required [ngModel]="newTodo.dueDate" />
+        <input type="datetime-local" name="dueDate" required [ngModel]="newTodo.dueDate" />
       </div>
 
       <div class="field">
         <label>&nbsp;</label>
         <button class="ui animated submit teal button"
-                (click)="addTodo()"
-                [disabled]="!f.valid">
+          type="submit"
+          [disabled]="!f.valid">
           <div class="visible content">Add</div>
           <div class="hidden content">
             <i class="plus icon"></i>

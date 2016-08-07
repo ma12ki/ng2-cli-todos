@@ -17,7 +17,8 @@ module.exports = function(defaults) {
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
       'angular2-uuid/index.js',
-      'moment/moment.js'
+      'moment/moment.js',
+      'ng2-semantic-ui/**/*.+(ts|js|js.map)'
     ]
   });
 };

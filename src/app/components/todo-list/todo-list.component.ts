@@ -1,18 +1,23 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TodosService, ITodos } from '../../services/index';
-import { Todo } from '../../models/index';
+import { Todo, SortObject } from '../../models/index';
 import { TodoItemComponent } from '../todo-item';
+import { TodoSortComponent } from '../todo-sort';
+import { OrderByPipe } from '../../pipes/order-by.pipe';
 
 @Component({
   moduleId: module.id,
   selector: 'mz-todo-list',
   templateUrl: 'todo-list.component.html',
   styleUrls: ['todo-list.component.css'],
-  directives: [TodoItemComponent]
+  directives: [TodoItemComponent, TodoSortComponent],
+  pipes: [OrderByPipe]
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   loading: boolean = true;
+
+  sortObject: SortObject = new SortObject('title');
 
   constructor(@Inject(TodosService) private todosService: ITodos) {
     console.log('*** TodoListComponent constructor ***');
@@ -36,8 +41,7 @@ export class TodoListComponent implements OnInit {
       });
   }
 
-  toggleCompleted(todo: Todo): void {
-    console.log('clicked todo', todo);
+  changeSort(sortObject: SortObject): void {
+    this.sortObject = sortObject;
   }
-
 }

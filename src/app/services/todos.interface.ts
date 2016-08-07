@@ -5,4 +5,8 @@ export interface ITodos {
   todos: Observable<Todo[]>;
 
   addTodo: (todo: Todo) => void;
+
+  editTodo: (todo: Todo) => void;
+
+  deleteTodo: (todo: Todo) => void;
 }

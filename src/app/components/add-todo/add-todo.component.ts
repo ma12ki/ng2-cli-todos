@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TodosService, ITodos } from '../../services/index';
 import { Todo, TodoPriority } from '../../models/index';
 
@@ -8,7 +8,7 @@ import { Todo, TodoPriority } from '../../models/index';
   templateUrl: 'add-todo.component.html',
   styleUrls: ['add-todo.component.css']
 })
-export class AddTodoComponent implements OnInit {
+export class AddTodoComponent {
   newTodo: Todo;
   priorities: Object[] = new Array<Object>();
 
@@ -25,7 +25,7 @@ export class AddTodoComponent implements OnInit {
       });
   }
 
-  resetTodo() {
+  resetTodo(): void {
     this.newTodo = new Todo({
       title: '',
       dueDate: null,
@@ -33,19 +33,15 @@ export class AddTodoComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
-
-  addTodo(formValues, valid) {
-    console.log(formValues, valid);
-    return;
-    // console.log('aassasa');
-    /*
+  addTodo(formValues: any, form): void {
+    console.log(form);
     let todo: Todo = new Todo({
-      title: 'lmao',
-      dueDate: new Date()
+      title: formValues.title,
+      dueDate: formValues.dueDate,
+      priority: formValues.priority
     });
     this.todosService.addTodo(todo);
-    */
+    this.resetTodo();
   }
 
 }
